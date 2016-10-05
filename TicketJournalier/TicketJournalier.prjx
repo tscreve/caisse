@@ -1,0 +1,31 @@
+<Project name="TicketJournalier" standardNamespace="TicketJournalier" description="" newfilesearch="None" enableviewstate="True" version="1.1" projecttype="VBNET">
+  <Contents>
+    <File name=".\MainForm.vb" subtype="Code" buildaction="Compile" dependson="" data="" />
+    <File name=".\AssemblyInfo.vb" subtype="Code" buildaction="Compile" dependson="" data="" />
+    <File name=".\TicketJournalier.MainForm.resources" subtype="Code" buildaction="EmbedAsResource" dependson="" data="" />
+  </Contents>
+  <References>
+    <Reference type="Gac" refto="Microsoft.PointOfService, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" localcopy="True" />
+  </References>
+  <DeploymentInformation target="" script="" strategy="File" />
+  <Configuration runwithwarnings="True" name="Debug">
+    <CodeGeneration compilerversion="" includedebuginformation="True" optimize="True" generateoverflowchecks="True" rootnamespace="" mainclass="" target="WinExe" definesymbols="" optionexplicit="True" optionstrict="False" win32Icon="" imports="" />
+    <VBDOC outputfile="" filestoparse="" commentprefix="'" />
+    <Execution consolepause="False" commandlineparameters="" />
+    <Output directory=".\bin\Debug" assembly="TicketJournalier" executeScript="" executeBeforeBuild="" executeAfterBuild="" executeBeforeBuildArguments="" executeAfterBuildArguments="" />
+  </Configuration>
+  <Configurations active="Debug">
+    <Configuration runwithwarnings="True" name="Debug">
+      <CodeGeneration compilerversion="" includedebuginformation="True" optimize="True" generateoverflowchecks="True" rootnamespace="" mainclass="" target="WinExe" definesymbols="" optionexplicit="True" optionstrict="False" win32Icon="" imports="" />
+      <VBDOC outputfile="" filestoparse="" commentprefix="'" />
+      <Execution consolepause="False" commandlineparameters="" />
+      <Output directory=".\bin\Debug" assembly="TicketJournalier" executeScript="" executeBeforeBuild="" executeAfterBuild="" executeBeforeBuildArguments="" executeAfterBuildArguments="" />
+    </Configuration>
+    <Configuration runwithwarnings="True" name="Release">
+      <CodeGeneration compilerversion="" includedebuginformation="False" optimize="True" generateoverflowchecks="False" rootnamespace="" mainclass="" target="WinExe" definesymbols="" optionexplicit="True" optionstrict="False" win32Icon="" imports="" />
+      <VBDOC outputfile="" filestoparse="" commentprefix="'" />
+      <Execution consolepause="False" commandlineparameters="" />
+      <Output directory=".\bin\Release" assembly="TicketJournalier" executeScript="" executeBeforeBuild="" executeAfterBuild="" executeBeforeBuildArguments="" executeAfterBuildArguments="" />
+    </Configuration>
+  </Configurations>
+</Project>

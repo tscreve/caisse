@@ -1,0 +1,50 @@
+<Project name="q" standardNamespace="q" description="" newfilesearch="None" enableviewstate="True" version="1.1" projecttype="VBNET">
+  <Contents>
+    <File name=".\MainForm.vb" subtype="Code" buildaction="Compile" dependson="" data="" />
+    <File name=".\AssemblyInfo.vb" subtype="Code" buildaction="Compile" dependson="" data="" />
+    <File name=".\Module1.vb" subtype="Code" buildaction="Compile" dependson="" data="" />
+    <File name=".\q.MainForm.resources" subtype="Code" buildaction="EmbedAsResource" dependson="" data="" />
+    <File name=".\q.FrmGestion.resources" subtype="Code" buildaction="EmbedAsResource" dependson="" data="" />
+    <File name=".\q.FrmPaye.resources" subtype="Code" buildaction="EmbedAsResource" dependson="" data="" />
+    <File name=".\DefaultNamespace.Form2.resources" subtype="Code" buildaction="EmbedAsResource" dependson="" data="" />
+    <File name=".\FrmModif.vb" subtype="Code" buildaction="Compile" dependson="" data="" />
+    <File name=".\q.FrmModif.resources" subtype="Code" buildaction="EmbedAsResource" dependson="" data="" />
+    <File name=".\Ticket.vb" subtype="Code" buildaction="Compile" dependson="" data="" />
+    <File name=".\Ligne.vb" subtype="Code" buildaction="Compile" dependson="" data="" />
+    <File name=".\TousLesTickets.vb" subtype="Code" buildaction="Compile" dependson="" data="" />
+    <File name=".\Paiement.vb" subtype="Code" buildaction="Compile" dependson="" data="" />
+    <File name=".\PaiementEnCours.vb" subtype="Code" buildaction="Compile" dependson="" data="" />
+    <File name=".\FrmConfirm.vb" subtype="Code" buildaction="Compile" dependson="" data="" />
+    <File name=".\q.FrmConfirm.resources" subtype="Code" buildaction="EmbedAsResource" dependson="" data="" />
+    <File name=".\FrmErreur.vb" subtype="Code" buildaction="Compile" dependson="" data="" />
+    <File name=".\q.FrmErreur.resources" subtype="Code" buildaction="EmbedAsResource" dependson="" data="" />
+    <File name=".\q.Form1.resources" subtype="Code" buildaction="EmbedAsResource" dependson="" data="" />
+    <File name=".\PremiereCaisse.vb" subtype="Code" buildaction="Compile" dependson="" data="" />
+    <File name=".\ModuleFonctionsShutDown.vb" subtype="Code" buildaction="Compile" dependson="" data="" />
+    <File name=".\q.build" subtype="Code" buildaction="Nothing" dependson="" data="" />
+  </Contents>
+  <References>
+    <Reference type="Gac" refto="Microsoft.PointOfService, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" localcopy="True" />
+  </References>
+  <DeploymentInformation target="C:" script="" strategy="Assembly" />
+  <Configuration runwithwarnings="True" name="Debug">
+    <CodeGeneration compilerversion="Standard" includedebuginformation="True" optimize="True" generateoverflowchecks="True" rootnamespace="" mainclass="" target="WinExe" definesymbols="" optionexplicit="True" optionstrict="False" win32Icon="" imports="" />
+    <VBDOC outputfile="" filestoparse="" commentprefix="'" />
+    <Execution consolepause="False" commandlineparameters="" />
+    <Output directory=".\bin\Debug" assembly="q" executeScript="" executeBeforeBuild="" executeAfterBuild="" executeBeforeBuildArguments="" executeAfterBuildArguments="" />
+  </Configuration>
+  <Configurations active="Debug">
+    <Configuration runwithwarnings="True" name="Debug">
+      <CodeGeneration compilerversion="Standard" includedebuginformation="True" optimize="True" generateoverflowchecks="True" rootnamespace="" mainclass="" target="WinExe" definesymbols="" optionexplicit="True" optionstrict="False" win32Icon="" imports="" />
+      <VBDOC outputfile="" filestoparse="" commentprefix="'" />
+      <Execution consolepause="False" commandlineparameters="" />
+      <Output directory=".\bin\Debug" assembly="q" executeScript="" executeBeforeBuild="" executeAfterBuild="" executeBeforeBuildArguments="" executeAfterBuildArguments="" />
+    </Configuration>
+    <Configuration runwithwarnings="True" name="Release">
+      <CodeGeneration compilerversion="Standard" includedebuginformation="False" optimize="True" generateoverflowchecks="False" rootnamespace="" mainclass="" target="WinExe" definesymbols="" optionexplicit="True" optionstrict="False" win32Icon="" imports="" />
+      <VBDOC outputfile="" filestoparse="" commentprefix="'" />
+      <Execution consolepause="False" commandlineparameters="" />
+      <Output directory=".\bin\Release" assembly="q" executeScript="" executeBeforeBuild="" executeAfterBuild="" executeBeforeBuildArguments="" executeAfterBuildArguments="" />
+    </Configuration>
+  </Configurations>
+</Project>

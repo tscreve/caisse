@@ -1,0 +1,93 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" xmlns:Conversion="urn:Conversion">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{466FC9D2-4400-43C1-9E31-DB8C6C79E15E}</ProjectGuid>
+    <RootNamespace>q</RootNamespace>
+    <AssemblyName>q</AssemblyName>
+    <OutputType>WinExe</OutputType>
+    <ApplicationIcon />
+    <WarningLevel>4</WarningLevel>
+    <StartupObject />
+    <NoStdLib />
+    <NoConfig />
+    <RunPostBuildEvent>OnSuccessfulBuild</RunPostBuildEvent>
+    <PreBuildEvent />
+    <PostBuildEvent />
+    <SourceAnalysisOverrideSettingsFile>C:\Users\tom\AppData\Roaming\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <RemoveIntegerChecks>False</RemoveIntegerChecks>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>Off</OptionStrict>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionInfer>Off</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>True</Optimize>
+    <AllowUnsafeBlocks />
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <OutputPath>bin\Debug\</OutputPath>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugType>Full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>False</DebugSymbols>
+    <Optimize>True</Optimize>
+    <AllowUnsafeBlocks />
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants />
+    <OutputPath>bin\Release\</OutputPath>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.PointOfService, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainForm.vb" />
+    <Compile Include="AssemblyInfo.vb" />
+    <Compile Include="Module1.vb" />
+    <Compile Include="FrmModif.vb" />
+    <Compile Include="Ticket.vb" />
+    <Compile Include="Ligne.vb" />
+    <Compile Include="TousLesTickets.vb" />
+    <Compile Include="Paiement.vb" />
+    <Compile Include="PaiementEnCours.vb" />
+    <Compile Include="FrmConfirm.vb" />
+    <Compile Include="FrmErreur.vb" />
+    <Compile Include="PremiereCaisse.vb" />
+    <Compile Include="ModuleFonctionsShutDown.vb" />
+    <Compile Include="FrmAvance.vb" />
+    <Compile Include="FrmReleveCaisse.vb" />
+    <Compile Include="FrmChangeCode.vb" />
+    <Compile Include="FrmHeureCaisse.vb" />
+    <EmbeddedResource Include="MainForm.resources" />
+    <EmbeddedResource Include="FrmGestion.resources" />
+    <EmbeddedResource Include="FrmPaye.resources" />
+    <EmbeddedResource Include="DefaultNamespace.Form2.resources" />
+    <EmbeddedResource Include="FrmModif.resources" />
+    <EmbeddedResource Include="FrmConfirm.resources" />
+    <EmbeddedResource Include="FrmErreur.resources" />
+    <EmbeddedResource Include="Form1.resources" />
+    <EmbeddedResource Include="FrmAvance.resources" />
+    <EmbeddedResource Include="HCFDH.FrmAvance.resources" />
+    <EmbeddedResource Include="FrmReleveCaisse.resources" />
+    <EmbeddedResource Include="FrmHeureCaisse.resources" />
+    <EmbeddedResource Include="FrmChangeCode.resources" />
+    <None Include="q.build" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.Targets" />
+</Project>

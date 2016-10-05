@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project name="q" default="build">
+  <description>SharpDevelop generated NAnt 0.84 build file.</description>
+  <!--Set debug property if not set-->
+  <ifnot propertyexists="debug">
+    <property name="debug" value="false" />
+  </ifnot>
+  <!--The 'init' target.  Creates folders needed for the build.-->
+  <target name="init" depends="init.debug, init.release" />
+  <!--The 'clean' target.  Removes compiled output.-->
+  <target name="clean" depends="clean.debug, clean.release" />
+  <!--The 'gacreferences' target.-->
+  <target name="gacreferences" depends="gacreferences.debug, gacreferences.release" />
+  <!--The 'build' target.-->
+  <target name="build" depends="build.debug, build.release" />
+  <!--The 'test' target.-->
+  <target name="test" depends="test.debug, test.release" />
+  <!--Set up various properties that will be referred to in the various nant targets.-->
+  <!--The output directory.-->
+  <property name="outputdir.debug" value=".\bin\Debug">
+  </property>
+  <!--The name of the assembly.-->
+  <property name="assembly.debug" value="q">
+  </property>
+  <!--The output file's extension.-->
+  <property name="extension.debug" value="exe">
+  </property>
+  <!--The initialisation target.-->
+  <target name="init.debug" if="${debug}">
+    <mkdir dir="${outputdir.debug}" />
+  </target>
+  <!--The 'clean' target.  Here we delete the built output files and extra files which are not directly specified in 
+		      the .prjx file (e.g. ".pdb", ".xml").-->
+  <target name="clean.debug" if="${debug}">
+    <delete>
+      <fileset>
+        <includes name="${outputdir.debug}\${assembly.debug}.${extension.debug}" />
+        <includes name="${outputdir.debug}\${assembly.debug}.pdb" />
+        <includes name="${outputdir.debug}\${assembly.debug}.xml" />
+        <includes name="${outputdir.debug}\*.config" />
+      </fileset>
+    </delete>
+  </target>
+  <!--The 'build' target.-->
+  <target name="build.debug" depends="init.debug, gacreferences.debug" if="${debug}">
+    <!--Compiles the code -->
+    <vbc target="winexe" output="${outputdir.debug}\${assembly.debug}.${extension.debug}" debug="True" define="" optionexplicit="True" optionstrict="False" win32icon="" rootnamespace="" imports="" warnaserror="False">
+      <sources>
+        <includes name=".\MainForm.vb" />
+        <includes name=".\AssemblyInfo.vb" />
+        <includes name=".\Module1.vb" />
+        <includes name=".\FrmModif.vb" />
+        <includes name=".\Ticket.vb" />
+        <includes name=".\Ligne.vb" />
+        <includes name=".\TousLesTickets.vb" />
+        <includes name=".\Paiement.vb" />
+        <includes name=".\PaiementEnCours.vb" />
+        <includes name=".\FrmConfirm.vb" />
+        <includes name=".\FrmErreur.vb" />
+        <includes name=".\PremiereCaisse.vb" />
+        <includes name=".\ModuleFonctionsShutDown.vb" />
+      </sources>
+      <references>
+        <includes name="${Microsoft.PointOfService, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35.filename}" />
+        <!--Standard .Net references since using a vbc.rsp does not seem to work-->
+        <includes name="Accessibility.dll" />
+        <includes name="Microsoft.Vsa.dll" />
+        <includes name="System.Configuration.Install.dll" />
+        <includes name="System.Data.dll" />
+        <includes name="System.Design.dll" />
+        <includes name="System.DirectoryServices.dll" />
+        <includes name="System.dll" />
+        <includes name="System.Drawing.Design.dll" />
+        <includes name="System.Drawing.dll" />
+        <includes name="System.EnterpriseServices.dll" />
+        <includes name="System.Management.dll" />
+        <includes name="System.Messaging.dll" />
+        <includes name="System.Runtime.Remoting.dll" />
+        <includes name="System.Runtime.Serialization.Formatters.Soap.dll" />
+        <includes name="System.Security.dll" />
+        <includes name="System.ServiceProcess.dll" />
+        <includes name="System.Web.dll" />
+        <includes name="System.Web.Mobile.dll" />
+        <includes name="System.Web.RegularExpressions.dll" />
+        <includes name="System.Web.Services.dll" />
+        <includes name="System.Windows.Forms.Dll" />
+        <includes name="System.XML.dll" />
+      </references>
+      <resources>
+        <includes name=".\q.MainForm.resources" />
+        <includes name=".\q.FrmGestion.resources" />
+        <includes name=".\q.FrmPaye.resources" />
+        <includes name=".\DefaultNamespace.Form2.resources" />
+        <includes name=".\q.FrmModif.resources" />
+        <includes name=".\q.FrmConfirm.resources" />
+        <includes name=".\q.FrmErreur.resources" />
+        <includes name=".\q.Form1.resources" />
+      </resources>
+    </vbc>
+    <!--Copy app.config file to output folder and rename it appropriately -->
+  </target>
+  <!--The test target.  Only supports Nunit 2.1 -->
+  <target name="test.debug" depends="build.debug" if="${debug}">
+  </target>
+  <!--Generates a property for each Gac reference.  The property name is set to the name of the assembly-->
+  <target name="gacreferences.debug" if="${debug}">
+    <echo message="Generating Gac references..." />
+    <!-- Script to get the full filenames for assemblies in the Gac.  As soon as nant 0.85 is released this code can be 
+				replaced by a nant function call (assembly::getcodebase). -->
+    <script language="C#" mainclass="Gac">
+      <code>
+				public class Gac
+				{
+					///
+					/// Gets the Gac path for an assembly reference and stores it
+					/// in a Nant property named after the assembly reference.
+					/// 
+					public static void ScriptMain( Project project ) 
+					{
+						try
+						{
+							string ReferenceName = "Microsoft.PointOfService, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35";
+
+							string ReferenceFilename = Gac.GetGacPath( ReferenceName );
+
+							if( ReferenceFilename.Length == 0 )
+							{
+								// Use reference name as gac path.
+
+								ReferenceFilename = ReferenceName;
+							}
+
+							project.Properties[ String.Concat( ReferenceName, ".filename" ) ] = ReferenceFilename;
+						}
+						catch( Exception Ex )
+						{
+							throw new NAnt.Core.BuildException( String.Format( Ex.Message ), Ex );
+						}
+					}
+
+					///
+					/// Gets the gac path for the specified assembly name.
+					///
+					public static string GetGacPath( string assemblyName )
+					{
+						string CodeBase = GetCodeBase( assemblyName );
+
+						return CodeBase.Replace( "file:///", "" );
+					}
+
+					/// 
+					/// Gets the code base for the specified assembly name.
+					/// 
+					public static string GetCodeBase( string assemblyName )
+					{
+						string CodeBase = String.Empty;
+		
+						System.Reflection.Assembly Assembly = 
+							System.Reflection.Assembly.LoadWithPartialName( assemblyName );
+		
+						if( Assembly != null )
+						{
+							CodeBase = Assembly.CodeBase;
+						}
+
+						return CodeBase;
+					}
+				}
+				</code>
+    </script>
+    <echo message="reference= ${Microsoft.PointOfService, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35.filename}" />
+  </target>
+  <!--Set up various properties that will be referred to in the various nant targets.-->
+  <!--The output directory.-->
+  <property name="outputdir.release" value=".\bin\Release">
+  </property>
+  <!--The name of the assembly.-->
+  <property name="assembly.release" value="q">
+  </property>
+  <!--The output file's extension.-->
+  <property name="extension.release" value="exe">
+  </property>
+  <!--The initialisation target.-->
+  <target name="init.release" unless="${debug}">
+    <mkdir dir="${outputdir.release}" />
+  </target>
+  <!--The 'clean' target.  Here we delete the built output files and extra files which are not directly specified in 
+		      the .prjx file (e.g. ".pdb", ".xml").-->
+  <target name="clean.release" unless="${debug}">
+    <delete>
+      <fileset>
+        <includes name="${outputdir.release}\${assembly.release}.${extension.release}" />
+        <includes name="${outputdir.release}\${assembly.release}.pdb" />
+        <includes name="${outputdir.release}\${assembly.release}.xml" />
+        <includes name="${outputdir.release}\*.config" />
+      </fileset>
+    </delete>
+  </target>
+  <!--The 'build' target.-->
+  <target name="build.release" depends="init.release, gacreferences.release" unless="${debug}">
+    <!--Compiles the code -->
+    <vbc target="winexe" output="${outputdir.release}\${assembly.release}.${extension.release}" debug="False" define="" optionexplicit="True" optionstrict="False" win32icon="" rootnamespace="" imports="" warnaserror="False">
+      <sources>
+        <includes name=".\MainForm.vb" />
+        <includes name=".\AssemblyInfo.vb" />
+        <includes name=".\Module1.vb" />
+        <includes name=".\FrmModif.vb" />
+        <includes name=".\Ticket.vb" />
+        <includes name=".\Ligne.vb" />
+        <includes name=".\TousLesTickets.vb" />
+        <includes name=".\Paiement.vb" />
+        <includes name=".\PaiementEnCours.vb" />
+        <includes name=".\FrmConfirm.vb" />
+        <includes name=".\FrmErreur.vb" />
+        <includes name=".\PremiereCaisse.vb" />
+        <includes name=".\ModuleFonctionsShutDown.vb" />
+      </sources>
+      <references>
+        <includes name="${Microsoft.PointOfService, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35.filename}" />
+        <!--Standard .Net references since using a vbc.rsp does not seem to work-->
+        <includes name="Accessibility.dll" />
+        <includes name="Microsoft.Vsa.dll" />
+        <includes name="System.Configuration.Install.dll" />
+        <includes name="System.Data.dll" />
+        <includes name="System.Design.dll" />
+        <includes name="System.DirectoryServices.dll" />
+        <includes name="System.dll" />
+        <includes name="System.Drawing.Design.dll" />
+        <includes name="System.Drawing.dll" />
+        <includes name="System.EnterpriseServices.dll" />
+        <includes name="System.Management.dll" />
+        <includes name="System.Messaging.dll" />
+        <includes name="System.Runtime.Remoting.dll" />
+        <includes name="System.Runtime.Serialization.Formatters.Soap.dll" />
+        <includes name="System.Security.dll" />
+        <includes name="System.ServiceProcess.dll" />
+        <includes name="System.Web.dll" />
+        <includes name="System.Web.Mobile.dll" />
+        <includes name="System.Web.RegularExpressions.dll" />
+        <includes name="System.Web.Services.dll" />
+        <includes name="System.Windows.Forms.Dll" />
+        <includes name="System.XML.dll" />
+      </references>
+      <resources>
+        <includes name=".\q.MainForm.resources" />
+        <includes name=".\q.FrmGestion.resources" />
+        <includes name=".\q.FrmPaye.resources" />
+        <includes name=".\DefaultNamespace.Form2.resources" />
+        <includes name=".\q.FrmModif.resources" />
+        <includes name=".\q.FrmConfirm.resources" />
+        <includes name=".\q.FrmErreur.resources" />
+        <includes name=".\q.Form1.resources" />
+      </resources>
+    </vbc>
+    <!--Copy app.config file to output folder and rename it appropriately -->
+  </target>
+  <!--The test target.  Only supports Nunit 2.1 -->
+  <target name="test.release" depends="build.release" unless="${debug}">
+  </target>
+  <!--Generates a property for each Gac reference.  The property name is set to the name of the assembly-->
+  <target name="gacreferences.release" unless="${debug}">
+    <echo message="Generating Gac references..." />
+    <!-- Script to get the full filenames for assemblies in the Gac.  As soon as nant 0.85 is released this code can be 
+				replaced by a nant function call (assembly::getcodebase). -->
+    <script language="C#" mainclass="Gac">
+      <code>
+				public class Gac
+				{
+					///
+					/// Gets the Gac path for an assembly reference and stores it
+					/// in a Nant property named after the assembly reference.
+					/// 
+					public static void ScriptMain( Project project ) 
+					{
+						try
+						{
+							string ReferenceName = "Microsoft.PointOfService, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35";
+
+							string ReferenceFilename = Gac.GetGacPath( ReferenceName );
+
+							if( ReferenceFilename.Length == 0 )
+							{
+								// Use reference name as gac path.
+
+								ReferenceFilename = ReferenceName;
+							}
+
+							project.Properties[ String.Concat( ReferenceName, ".filename" ) ] = ReferenceFilename;
+						}
+						catch( Exception Ex )
+						{
+							throw new NAnt.Core.BuildException( String.Format( Ex.Message ), Ex );
+						}
+					}
+
+					///
+					/// Gets the gac path for the specified assembly name.
+					///
+					public static string GetGacPath( string assemblyName )
+					{
+						string CodeBase = GetCodeBase( assemblyName );
+
+						return CodeBase.Replace( "file:///", "" );
+					}
+
+					/// 
+					/// Gets the code base for the specified assembly name.
+					/// 
+					public static string GetCodeBase( string assemblyName )
+					{
+						string CodeBase = String.Empty;
+		
+						System.Reflection.Assembly Assembly = 
+							System.Reflection.Assembly.LoadWithPartialName( assemblyName );
+		
+						if( Assembly != null )
+						{
+							CodeBase = Assembly.CodeBase;
+						}
+
+						return CodeBase;
+					}
+				}
+				</code>
+    </script>
+    <echo message="reference= ${Microsoft.PointOfService, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35.filename}" />
+  </target>
+</project>
